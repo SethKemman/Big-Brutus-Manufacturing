@@ -99,7 +99,7 @@
         
     };
 
-    public class HardwareComponent //abstract, geen constructor.
+    public abstract class HardwareComponent //abstract, geen constructor.
     {
         private string _name;
         public string Name { get { return _name; } set { _name = value; } }
