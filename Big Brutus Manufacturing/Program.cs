@@ -16,7 +16,16 @@ namespace BigBrutus {
             {
                 Console.WriteLine(building.Name);
             }
+            Console.WriteLine("-----------------");
 
+            EnergieSensor energieSensor = new EnergieSensor();
+            energieSensor.Name = "Energiesensor 1";
+            EnergieSensor energieSensor2 = new EnergieSensor();
+            energieSensor2.Name = "Energiesensor 2";
+
+            Console.WriteLine(energieSensor.Name);
+            Console.WriteLine(energieSensor2.Name);
+            
         }
 
     }
