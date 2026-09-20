@@ -1,6 +1,6 @@
-﻿using Big_Brutus_Manufacturing;
+﻿using System.Reflection;
 
-namespace BigBrutus { 
+namespace Big_Brutus_Manufacturing { 
 
     class Program
     {
@@ -12,22 +12,28 @@ namespace BigBrutus {
             campus1.AddBuilding(gebouw1);
             campus1.AddBuilding(gebouw2);
             Zone zone1 = new Zone("joehoe");
-            foreach (var building in campus1.Buildings)
-            {
-                Console.WriteLine(building.Name);
-            }
-            Console.WriteLine("-----------------");
-
+            //foreach (var building in campus1.Buildings)
+            // {
+            //     Console.WriteLine(building.Name);
+            // }
+            // Console.WriteLine("-----------------");
+            // 
             EnergieSensor energieSensor = new EnergieSensor();
             energieSensor.Name = "Energiesensor 1";
             EnergieSensor energieSensor2 = new EnergieSensor();
             energieSensor2.Name = "Energiesensor 2";
+            // 
+            // Console.WriteLine(energieSensor.Name);
+            // Console.WriteLine(energieSensor2.Name)
 
-            Console.WriteLine(energieSensor.Name);
-            Console.WriteLine(energieSensor2.Name);
+
+
+            Terminal terminal = new Terminal();
+
+            
             
         }
 
     }
     
-    }
+}
