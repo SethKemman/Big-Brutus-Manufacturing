@@ -41,25 +41,8 @@ namespace Big_Brutus_Manufacturing
 
         public List<string> MenuOptions()
         {
-            string[] classes = { "Building", "Campus", "HardwareComponent", "Zone" };
-
-            List<string> options = new List<string>();
-
-            if (classes.Contains(currentMenu))
-            {
-                Type type = Type.GetType($"Big_Brutus_Manufacturing.{currentMenu}");
-
-                MethodInfo[] myArrayMethodInfo = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly); //https://learn.microsoft.com/en-us/dotnet/api/system.type.getmethods?view=net-10.0
-
-                foreach (MethodInfo myMethod in myArrayMethodInfo)
-                {
-                    options.Add(myMethod.Name);
-                }
-                return options;
-            }
-            else
-                currentMenu = "Menu";
-                return baseOptions; //Return baseoptions if there are no options
+           currentMenu = "Menu";
+           return baseOptions; //Return baseoptions if there are no options
             
         }
 

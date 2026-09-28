@@ -6,13 +6,7 @@ namespace Big_Brutus_Manufacturing
 {
     public class Campus //class
     {
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get;  } // only set name during construction
         private List<Building> _buildings = new List<Building>();
         public IReadOnlyList<Building> Buildings
         {
@@ -26,7 +20,7 @@ namespace Big_Brutus_Manufacturing
             {
                 throw new ArgumentException("Naam mag niet leeg zijn.");
             }
-            _name = name;
+            this.Name = name;
         }
 
         public void AddBuilding(Building building) // Method om Buildings toe te voegen aan de campus

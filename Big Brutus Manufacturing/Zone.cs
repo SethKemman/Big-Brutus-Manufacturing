@@ -6,12 +6,9 @@ namespace Big_Brutus_Manufacturing
 {
     public class Zone
     {
-        private string _name;
-        public string Name { get { return _name; } set { _name = value; } }
+        public string Name { get;  } // Only set during init.
 
-        private int _id;
-
-        public int Id { get { return _id; } } // readonly
+        public int Id { get; } // Only set during init.
 
         private List<HardwareComponent> _hardwareComponents = new List<HardwareComponent>();
 
@@ -19,9 +16,19 @@ namespace Big_Brutus_Manufacturing
         {
             get { return _hardwareComponents; }
         }
+
         public Zone(string name)
         {
-            this._name = name;
+            this.Name = name;
+        }
+
+        public void addComponent(HardwareComponent component)
+        {
+            if (component == null)
+            {
+                return;
+            }
+            _hardwareComponents.Add(component);
         }
 
     };

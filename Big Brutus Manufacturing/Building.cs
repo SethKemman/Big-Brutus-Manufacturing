@@ -6,12 +6,7 @@ namespace Big_Brutus_Manufacturing
 {
     public class Building
     {
-        private string _name;
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; } // Only set during initialization.
         private List<Zone> _zones = new List<Zone>();
         public IReadOnlyList<Zone> Zones { get { return _zones; } }
 
@@ -19,7 +14,7 @@ namespace Big_Brutus_Manufacturing
         public Building(string name)
         {
             if (name == null) { return; }
-            _name = name;
+            this.Name = name;
         }
 
         public void addZone(Zone zone)

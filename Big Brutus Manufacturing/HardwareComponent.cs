@@ -6,11 +6,9 @@ namespace Big_Brutus_Manufacturing
 {
     public abstract class HardwareComponent //abstract, geen constructor.
     {
-        private string _name;
-        public string Name { get { return _name; } set { _name = value; } }
-        private int _id;
+        public string Name { get; protected set; } // Only set during init.
 
-        public int Id { get { return _id; } set { _id = value; } }
+        public int Id { get; protected set; } // Only set during init.
 
         public void StuurGegevens()
         {
@@ -22,6 +20,7 @@ namespace Big_Brutus_Manufacturing
         {
             throw new NotImplementedException();
         }
+
     }
 
     public class TemperatuurSensor : HardwareComponent
@@ -34,16 +33,48 @@ namespace Big_Brutus_Manufacturing
     }
     public class EnergieSensor : HardwareComponent
     {
-        public EnergieSensor() { }
+        public EnergieSensor(string name, int id) {
+            this.Name = name;
+            this.Id = id;
+        }
     }
 
     public class Thermostaat : HardwareComponent
     {
-        public Thermostaat() { }
+        private int _temperature;
+
+        public int Temperature { get { return _temperature; } set
+            {
+                if (value >= -20 && value <= 60)
+                {
+                    _temperature = value;
+                }
+            }
+        }
+        public Thermostaat(string name, int id)
+        {
+            this.Name = name;
+            this.Id = id;
+        }
     }
     public class DimbareLamp : HardwareComponent
     {
-        public DimbareLamp() { }
+        private int _brightness;
+        public int Brightness { get { return _brightness; } set
+            {
+                if (value >= 0 && value <= 100)
+                {
+                    _brightness = value;
+                }
+            }
+        }
+
+
+        public DimbareLamp(string name, int id) {
+            this.Name = name;
+            this.Id = id;
+        }
+
     }
     public class Ventilator : HardwareComponent
     {

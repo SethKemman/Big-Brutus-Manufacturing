@@ -18,20 +18,26 @@ namespace Big_Brutus_Manufacturing {
             // }
             // Console.WriteLine("-----------------");
             // 
-            EnergieSensor energieSensor = new EnergieSensor();
-            energieSensor.Name = "Energiesensor 1";
-            EnergieSensor energieSensor2 = new EnergieSensor();
-            energieSensor2.Name = "Energiesensor 2";
+            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1);
+            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2);
             // 
             // Console.WriteLine(energieSensor.Name);
             // Console.WriteLine(energieSensor2.Name)
 
-
-
-            Terminal terminal = new Terminal();
+            zone1.addComponent(energieSensor);
+            zone1.addComponent(energieSensor2);
 
             
-            
+
+
+            foreach (HardwareComponent component in zone1.HardwareComponents)
+            {
+                Console.WriteLine(component.Name);
+            }
+            //Terminal terminal = new Terminal();
+
+
+
         }
 
     }
