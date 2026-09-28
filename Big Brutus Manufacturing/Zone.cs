@@ -30,6 +30,14 @@ namespace Big_Brutus_Manufacturing
             }
             _hardwareComponents.Add(component);
         }
+        public void removeComponent(HardwareComponent component)
+        {
+            if (component == null)
+            {
+                return;
+            }
+            _hardwareComponents.Remove(component);
+        }
 
     };
 }

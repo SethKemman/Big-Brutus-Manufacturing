@@ -16,7 +16,7 @@ namespace Big_Brutus_Manufacturing
             throw new NotImplementedException();
         }
 
-        public void LogEvent() //Hier komt een event argument
+        public virtual void LogEvent() //Hier komt een event argument. Moet de virtual naar abstract veranderen zodra ik klaar ben met het implementeren voor de andere functies.
         {
             throw new NotImplementedException();
         }
@@ -36,6 +36,12 @@ namespace Big_Brutus_Manufacturing
         public EnergieSensor(string name, int id) {
             this.Name = name;
             this.Id = id;
+        }
+
+        public void LogEvent(string name, int level, Zone zone)
+        {
+            Event obj = new Event(this.Name, level, zone, this.GetType().ToString());
+
         }
     }
 
