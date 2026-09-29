@@ -10,6 +10,9 @@ namespace Big_Brutus_Manufacturing
 
         public int Id { get; protected set; } // Only set during init.
 
+        public Zone Zone { get; protected set; }
+
+
         public void StuurGegevens()
         {
             //Implementeer dit later
@@ -33,15 +36,17 @@ namespace Big_Brutus_Manufacturing
     }
     public class EnergieSensor : HardwareComponent
     {
-        public EnergieSensor(string name, int id) {
+        public EnergieSensor(string name, int id, Zone zone) {
             this.Name = name;
             this.Id = id;
+            this.Zone = zone;
+            zone.addComponent(this);
         }
 
-        public void LogEvent(string name, int level, Zone zone)
+        public void LogEvent(string name, int level)
         {
-            Event obj = new Event(this.Name, level, zone, this.GetType().ToString());
-
+            Meting meting = new Meting(name, level, this.Zone, this.GetType().Name);
+            
         }
     }
 

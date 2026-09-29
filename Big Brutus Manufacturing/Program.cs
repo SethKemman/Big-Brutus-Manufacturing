@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel;
+using System.Reflection;
 
 namespace Big_Brutus_Manufacturing { 
 
@@ -18,14 +19,11 @@ namespace Big_Brutus_Manufacturing {
             // }
             // Console.WriteLine("-----------------");
             // 
-            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1);
-            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2);
+            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1, zone1);
+            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2, zone1);
             // 
             // Console.WriteLine(energieSensor.Name);
             // Console.WriteLine(energieSensor2.Name)
-
-            zone1.addComponent(energieSensor);
-            zone1.addComponent(energieSensor2);
 
             
 
@@ -33,7 +31,13 @@ namespace Big_Brutus_Manufacturing {
             foreach (HardwareComponent component in zone1.HardwareComponents)
             {
                 Console.WriteLine(component.Name);
+                if (component.GetType() == typeof(EnergieSensor))
+                {
+                    EnergieSensor energieding = (EnergieSensor)component;
+                    //energieding.LogEvent($"Naam van sensor is {component.Name}", 1);
+                }
             }
+
             //Terminal terminal = new Terminal();
 
 
