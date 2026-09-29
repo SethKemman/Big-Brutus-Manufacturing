@@ -8,22 +8,16 @@ namespace Big_Brutus_Manufacturing {
         static void Main(string[] args)
         {
             Campus campus1 = new Campus("CHE");
+
             Building gebouw1 = new Building("Building Alpha");
             Building gebouw2 = new Building("Building Beta");
+
             campus1.AddBuilding(gebouw1);
             campus1.AddBuilding(gebouw2);
             Zone zone1 = new Zone("joehoe");
-            //foreach (var building in campus1.Buildings)
-            // {
-            //     Console.WriteLine(building.Name);
-            // }
-            // Console.WriteLine("-----------------");
-            // 
+
             EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1, zone1);
             EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2, zone1);
-            // 
-            // Console.WriteLine(energieSensor.Name);
-            // Console.WriteLine(energieSensor2.Name)
 
             
 
@@ -31,11 +25,6 @@ namespace Big_Brutus_Manufacturing {
             foreach (HardwareComponent component in zone1.HardwareComponents)
             {
                 Console.WriteLine(component.Name);
-                if (component.GetType() == typeof(EnergieSensor))
-                {
-                    EnergieSensor energieding = (EnergieSensor)component;
-                    //energieding.LogEvent($"Naam van sensor is {component.Name}", 1);
-                }
             }
 
             //Terminal terminal = new Terminal();

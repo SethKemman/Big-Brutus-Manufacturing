@@ -36,16 +36,18 @@ namespace Big_Brutus_Manufacturing
     }
     public class EnergieSensor : HardwareComponent
     {
+
         public EnergieSensor(string name, int id, Zone zone) {
             this.Name = name;
             this.Id = id;
             this.Zone = zone;
             zone.addComponent(this);
+            
         }
 
         public void LogEvent(string name, int level)
         {
-            Meting meting = new Meting(name, level, this.Zone, this.GetType().Name);
+            //to be implemented
             
         }
     }

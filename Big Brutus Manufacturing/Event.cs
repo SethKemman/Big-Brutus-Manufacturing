@@ -23,9 +23,6 @@ namespace Big_Brutus_Manufacturing
     public class Meting : Event
     {
 
-        protected Logbook<Meting> _metingen = new Logbook<Meting>();
-        public Logbook<Meting> Metingen { get { return _metingen; } }
-
         public Meting(string content, int level, Zone zone, string hardware)
         {
             this.Content = content;
@@ -33,8 +30,6 @@ namespace Big_Brutus_Manufacturing
             this.Zone = zone;
             this.HardwareType = hardware;
             this.time = DateTime.Now;
-
-            Metingen.Add(this);
         }
 
     }
