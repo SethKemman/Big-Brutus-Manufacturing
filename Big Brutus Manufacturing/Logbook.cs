@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Big_Brutus_Manufacturing
 {
-    public class Logbook<T>
+
+    public class Logbook<T> where T : Event // alle dingen die worden gelogd zijn events.
     {
 
         private List<T> _logs = new List<T>();
@@ -27,6 +28,17 @@ namespace Big_Brutus_Manufacturing
                 return;
             }
             _logs.Remove(item);
+        }
+
+        public List<T> LogsByLevel(Level level)
+        {
+            return _logs.Where(o => o.Level == level).ToList();
+            
+        }
+
+        public List<T> LogsByTime()
+        {
+            return _logs.OrderBy(o => o.time).ToList();
         }
     }
 }
