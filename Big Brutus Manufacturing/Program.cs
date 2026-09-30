@@ -15,13 +15,17 @@ namespace Big_Brutus_Manufacturing {
             campus1.AddBuilding(gebouw1);
             campus1.AddBuilding(gebouw2);
             Zone zone1 = new Zone("joehoe");
-
-
-            Logbook<Meting> MetingLogbook = new Logbook<Meting>();
-
-            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1, zone1, MetingLogbook);
-            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2, zone1, MetingLogbook);
-            
+            //foreach (var building in campus1.Buildings)
+            // {
+            //     Console.WriteLine(building.Name);
+            // }
+            // Console.WriteLine("-----------------");
+            // 
+            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1, zone1);
+            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2, zone1);
+            // 
+            // Console.WriteLine(energieSensor.Name);
+            // Console.WriteLine(energieSensor2.Name)
 
             energieSensor.LogEvent("Nieuwe update", Level.Informational);
             Thread.Sleep(2000);

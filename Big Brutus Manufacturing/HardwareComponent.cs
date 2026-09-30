@@ -47,20 +47,11 @@ namespace Big_Brutus_Manufacturing
             this.Id = id;
             this.Zone = zone;
             zone.addComponent(this);
-<<<<<<< HEAD
-            this.logbook = logbook;
-=======
-            
->>>>>>> 44972170696be9ddc22db3c6906135cb3c84e0ee
         }
 
         public void LogEvent(string name, Level level)
         {
-<<<<<<< HEAD
             Meting meting = new Meting(name, level, this.Zone, this.GetType().Name);
-            logbook.Add(meting);
-=======
-            //to be implemented
             
 >>>>>>> 44972170696be9ddc22db3c6906135cb3c84e0ee
         }
