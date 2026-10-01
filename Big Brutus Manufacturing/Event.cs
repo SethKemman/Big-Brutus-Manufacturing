@@ -30,12 +30,7 @@ namespace Big_Brutus_Manufacturing
 
     public class Meting : Event
     {
-
-<<<<<<< HEAD
         public Meting(string content, Level level, Zone zone, string hardware)
-=======
-        public Meting(string content, int level, Zone zone, string hardware)
->>>>>>> 44972170696be9ddc22db3c6906135cb3c84e0ee
         {
             this.Content = content;
             this.Level = level;

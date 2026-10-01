@@ -25,16 +25,11 @@ namespace Big_Brutus_Manufacturing {
             Thread.Sleep(2000);
             energieSensor2.LogEvent("Sensor loopt vast", Level.Critical);
 
-            foreach (Meting meting in MetingLogbook.Logs)
+            foreach (Meting meting in MetingLogbook.LogsByLevel(Level.Informational))
             {
-                Console.WriteLine(meting.Content + $"Met level {meting.Level}");
+                Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
             }
 
-
-            foreach (HardwareComponent component in zone1.HardwareComponents)
-            {
-                Console.WriteLine(component.Name);
-            }
 
             //Terminal terminal = new Terminal();
 
