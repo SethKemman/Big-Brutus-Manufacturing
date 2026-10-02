@@ -15,11 +15,20 @@ namespace Big_Brutus_Manufacturing
 
         public Zone Zone { get; protected set; }
 
-        public abstract void LogEvent();
+        public virtual void LogEvent()
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract void VoerDiagnoseUit();
+        public virtual void VoerDiagnoseUit()
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract int BerekenHuidigVerbruik();
+        public virtual int BerekenHuidigVerbruik()
+        {
+            throw new NotImplementedException();
+        }
 
     }
 
