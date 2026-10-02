@@ -40,5 +40,10 @@ namespace Big_Brutus_Manufacturing
         {
             return Logs.OrderBy(o => o.time).ToList();
         }
+
+        public void Wipe()
+        {
+            _logs.Clear();
+        }
     }
 }

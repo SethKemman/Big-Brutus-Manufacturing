@@ -5,38 +5,55 @@ namespace Big_Brutus_Manufacturing {
 
     class Program
     {
-        static void Main(string[] args)
+
+        public static class Globals
         {
-            Campus campus1 = new Campus("CHE");
+            public static Logbook<Meting> MetingLogbook;
+            public static Campus campus;
+        }
+
+            static void Main(string[] args)
+        {
+            Globals.campus = new Campus("CHE");
 
             Building gebouw1 = new Building("Building Alpha");
             Building gebouw2 = new Building("Building Beta");
 
-            campus1.AddBuilding(gebouw1);
-            campus1.AddBuilding(gebouw2);
-            Zone zone1 = new Zone("joehoe");
-           
-            Logbook<Meting> MetingLogbook = new Logbook<Meting>();
+            Globals.campus.AddBuilding(gebouw1);
+            Globals.campus.AddBuilding(gebouw2);
+            Zone zone1 = new Zone("ZoneA");
+            Zone zone2 = new Zone("ZoneB");
+            gebouw1.addZone(zone1);
+            gebouw1.addZone(zone2);
 
-            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1, zone1, MetingLogbook);
-            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2, zone1, MetingLogbook);
+            Globals.MetingLogbook = new Logbook<Meting>();
 
-            energieSensor.LogEvent("Nieuwe update", Level.Informational);
-            Thread.Sleep(2000);
-            energieSensor2.LogEvent("Sensor loopt vast", Level.Critical);
+            EnergieSensor energieSensor = new EnergieSensor("Energiesensor 1", 1, zone1, Globals.MetingLogbook);
+            EnergieSensor energieSensor2 = new EnergieSensor("Energiesensor 2", 2, zone1, Globals.MetingLogbook);
 
-            foreach (Meting meting in MetingLogbook.LogsByLevel(Level.Informational))
-            {
-                Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
-            }
+            Ventilator ventilator1 = new Ventilator("UltraVent", 1, zone2, Globals.MetingLogbook);
+            Ventilator ventilator2 = new Ventilator("SuperVentilator", 2, zone2, Globals.MetingLogbook);
+
+            DimbareLamp lamp1 = new DimbareLamp("MooiLampje", 1, zone2, Globals.MetingLogbook);
+            lamp1.SetBrightness(0);
+            ventilator2.SetRPM(0);
+
+            //energieSensor.LogEvent("Nieuwe update", Level.Informational);
+            //Thread.Sleep(2000);
+            //energieSensor2.LogEvent("Sensor loopt vast", Level.Critical);
+
+            //foreach (Meting meting in Globals.MetingLogbook.LogsByLevel(Level.Informational))
+            //{
+            //    Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
+            //}
 
 
-            //Terminal terminal = new Terminal();
+            Terminal terminal = new Terminal();
 
 
 
         }
 
     }
-    
+
 }

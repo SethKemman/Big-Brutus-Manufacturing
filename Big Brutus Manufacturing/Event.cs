@@ -9,7 +9,9 @@ namespace Big_Brutus_Manufacturing
     {
         Informational,
         Warning,
-        Critical
+        Critical,
+
+        Placeholder // Om deze logs te ignoren met testen.
 
     }
     public abstract class Event

@@ -8,6 +8,7 @@ namespace Big_Brutus_Manufacturing
 
     public abstract class HardwareComponent //abstract, zonder constructor.
     {
+        public int PowerUsage { get; protected set; }
         public string Name { get; protected set; } // Only set during init.
 
         public int Id { get; protected set; } // Only set during init.
@@ -33,7 +34,7 @@ namespace Big_Brutus_Manufacturing
 
     public abstract class  SensorTemplate : HardwareComponent
     {
-        public int PowerUsage { get; protected set; } = 3; //3 watt
+        
 
         private Logbook<Meting> logbook;
         public SensorTemplate(string name, int id, Zone zone, Logbook<Meting> logbook)
@@ -43,6 +44,7 @@ namespace Big_Brutus_Manufacturing
             this.Id = id;
             this.Zone = zone;
             this.logbook = logbook;
+            this.PowerUsage = 3; //3 watt
             zone.addComponent(this);
         }
 
@@ -54,7 +56,7 @@ namespace Big_Brutus_Manufacturing
         }
         public override void VoerDiagnoseUit()
         {
-            LogEvent($"PlaceholderDiagnose voor device {this.Id} in {this.Zone.Name}", Level.Informational); // Ik heb echt werkelijk geen idee wat de functionaliteit van de sensoren is. Ik bedoel ik snap dat een bewegingssensor een functie kan krijgen als MovementDetected() die dan een logevent aanmaakt ofzo, maar ik zie in de huidige casus hier nog niet echt een nut voor. Dan zou ik een random bool maken (random int tussen 1 en 2, 1 is true 2 is false bijvoorbeeld) die dan bij true een logevent doet. Niet echt nuttig.
+            LogEvent($"PlaceholderDiagnose voor device {this.Id} in {this.Zone.Name}", Level.Placeholder); // Ik heb echt werkelijk geen idee wat de functionaliteit van de sensoren is. Ik bedoel ik snap dat een bewegingssensor een functie kan krijgen als MovementDetected() die dan een logevent aanmaakt ofzo, maar ik zie in de huidige casus hier nog niet echt een nut voor. Dan zou ik een random bool maken (random int tussen 1 en 2, 1 is true 2 is false bijvoorbeeld) die dan bij true een logevent doet. Niet echt nuttig.
         }
 
         public override int BerekenHuidigVerbruik()
@@ -66,7 +68,6 @@ namespace Big_Brutus_Manufacturing
 
     public abstract class DeviceTemplate : HardwareComponent
     {
-        public int PowerUsage { get; protected set; } = 3; //3 watt
 
         public bool Power { get; protected set;  } = false;
 
@@ -79,6 +80,7 @@ namespace Big_Brutus_Manufacturing
             this.Zone = zone;
             this.logbook = logbook;
             zone.addComponent(this);
+            this.PowerUsage = 3; //3 watt
         }
 
         public void LogEvent(string content, Level level)

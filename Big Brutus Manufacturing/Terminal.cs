@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Security.Cryptography;
+using static Big_Brutus_Manufacturing.Program;
 
 namespace Big_Brutus_Manufacturing
 {
@@ -20,23 +21,13 @@ namespace Big_Brutus_Manufacturing
         private int selectedOption = 0;
 
         public Terminal() {
-            baseOptions.Add("Campus");
-            baseOptions.Add("Building");
-            baseOptions.Add("Zone");
+            baseOptions.Add("Campus Diagnose");
+            baseOptions.Add("Bereken totaal energieverbruik");
+            baseOptions.Add("Zie meldingen");
+            baseOptions.Add("Wipe Logboek");
             this.menuOptions = baseOptions;
-            history.Add("Menu");
             RenderScreen();
             
-        }
-
-        private string MenuHistory()
-        {
-            string longstring = "";
-            foreach (string element in history)
-            {
-                longstring = longstring + ">" + element;
-            }
-            return longstring;
         }
 
         public List<string> MenuOptions()
@@ -46,13 +37,40 @@ namespace Big_Brutus_Manufacturing
             
         }
 
+        private void CampusDiagnose()
+        {
+            foreach (Building building in Globals.campus.Buildings)
+            {
+                foreach (Zone zone in building.Zones) {
+                    foreach (HardwareComponent hardwareComponent in zone.HardwareComponents) {
+                        hardwareComponent.VoerDiagnoseUit();
+                        }
+                }
+            }
+        }
+
+        private double BerekenTotaalEnergieVerbruik()
+        {
+            double result = 0;
+            foreach (Building building in Globals.campus.Buildings)
+            {
+                foreach (Zone zone in building.Zones)
+                {
+                    foreach (HardwareComponent hardwareComponent in zone.HardwareComponents)
+                    {
+                        result += hardwareComponent.PowerUsage;
+                    }
+                }
+            }
+            return result;
+        }
+
 
         public void RenderScreen()
         {
             //basic rendering
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{MenuHistory()}");
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -65,13 +83,13 @@ namespace Big_Brutus_Manufacturing
                 if (option == menuOptions[selectedOption])
                 {
                     Console.ForegroundColor = _highlightColor;
-                    Console.WriteLine($"[{(selectedOption + 1)}]{(option)}");
+                    Console.WriteLine($"[{(selectedOption + 1)}] {(option)}");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("");
                 }
                 else
                 {
-                    Console.WriteLine($"[{(menuOptions.IndexOf(option) +1)}]{option}");
+                    Console.WriteLine($"[{(menuOptions.IndexOf(option) +1)}] {option}");
                     Console.WriteLine("");
                 }
                 
@@ -107,16 +125,53 @@ namespace Big_Brutus_Manufacturing
                 case ConsoleKey.Enter:
                     currentMenu = menuOptions[selectedOption];
                     history.Add(currentMenu);
+                    switch(currentMenu)
+                    {
+                        case "Campus Diagnose":
+                            CampusDiagnose();
+                            Console.WriteLine("Succes");
+                            Thread.Sleep(2000);
+                            break;
+
+                        case "Bereken totaal energieverbruik":
+                           double totaal = BerekenTotaalEnergieVerbruik();
+                            Console.WriteLine($"{totaal / 1000} kWh");
+                            Thread.Sleep(2000);
+                            break;
+
+                        case "Zie meldingen":
+                            foreach (Meting meting in Globals.MetingLogbook.Logs)
+                            {
+                                
+                                if (meting.Level == Level.Warning)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Yellow;
+                                    Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
+                                }
+                                else if (meting.Level == Level.Critical)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
+                                }
+                                else
+                                {
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
+                                }
+                            }
+                            Thread.Sleep(2000);
+                            break;
+                        case "Wipe Logboek":
+                            Globals.MetingLogbook.Wipe();
+                            break;
+                        default:
+                            return;
+
+                    }
                     RenderScreen();
                     break;
 
                 case ConsoleKey.Backspace:
-                    if (history.Any() & history.Count > 1) 
-                    {
-                        history.Remove(history.Last());
-                        currentMenu = history.Last();
-                       
-                    }
                     
                     RenderScreen();
                     break;
