@@ -15,20 +15,11 @@ namespace Big_Brutus_Manufacturing
 
         public Zone Zone { get; protected set; }
 
-        public virtual void LogEvent(string content, Level level) //Hier komt een event argument. Moet de virtual naar abstract veranderen zodra ik klaar ben met het implementeren voor de andere functies.
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void LogEvent();
 
-        public virtual void VoerDiagnoseUit()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void VoerDiagnoseUit();
 
-        public virtual int BerekenHuidigVerbruik()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract int BerekenHuidigVerbruik();
 
     }
 

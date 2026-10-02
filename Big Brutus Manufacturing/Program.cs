@@ -38,15 +38,6 @@ namespace Big_Brutus_Manufacturing {
             lamp1.SetBrightness(0);
             ventilator2.SetRPM(0);
 
-            //energieSensor.LogEvent("Nieuwe update", Level.Informational);
-            //Thread.Sleep(2000);
-            //energieSensor2.LogEvent("Sensor loopt vast", Level.Critical);
-
-            //foreach (Meting meting in Globals.MetingLogbook.LogsByLevel(Level.Informational))
-            //{
-            //    Console.WriteLine($"{meting.Level}: {meting.Content} @ {meting.time}");
-            //}
-
 
             Terminal terminal = new Terminal();
 
